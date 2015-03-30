@@ -114,17 +114,11 @@ __all__ = [
 __all__.sort()
 
 js_sources = {
-    'mootools_more': '/scripts/third-party/mootools-1.2.4.4-more-yui-compressed.js',
-    'mootools_core': '/scripts/third-party/mootools-1.2.6-core-2013-01-16.min.js',
-}
-js_sources_debug = {
     'mootools_more': '/scripts/third-party/mootools-1.2.4.4-more.js',
     'mootools_core': '/scripts/third-party/mootools-1.2.6-core-2013-01-16.js',
 }
 
 def js(source):
-    if config['debug'] and source in js_sources_debug:
-        return url_for(js_sources_debug[source])
     return url_for(js_sources[source])
 
 def mediadrop_version():
