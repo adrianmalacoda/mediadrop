@@ -20,9 +20,9 @@ var MediaManager = new Class({
 		});
 		this.fileUploader = opts.fileUploader;
 		this.thumbUploader = opts.thumbUploader;
-		this.thumbUploader.addEvents({
+		/*this.thumbUploader.addEvents({
 			fileComplete: this.onThumbUpload.bind(this)
-		});
+		});*/
 		this.files = opts.files.addEvents({
 			fileAdded: this.onFileAdded.bind(this),
 			fileEdited: this.updateStatusForm.bind(this),
@@ -372,7 +372,7 @@ var FileManager = new Class({
 		this.setOptions(opts);
 		this.container = $(container);
 		this.addForm = $(this.options.addForm);
-		this.uploader = new UploaderBase(this.options.uploader);
+		this.uploader = this.options.uploader;
 		this.modal = new Modal(this.container, this.options.modal);
 		this.thead = this.container.getElement('table thead');
 		this.tbody = this.container.getElement('table tbody');
@@ -419,14 +419,14 @@ var FileManager = new Class({
 
 	_attachUploader: function(uploader){
 		// Hide the uploader when the modal isn't open
-		return uploader.addEvents({
+		return /*uploader.addEvents({
 			selectSuccess: this.onUploadSelectSuccess.bind(this),
 			selectFail: this.onUploadSelectFail.bind(this),
 			fileStart: this.onFileUploadStart.bind(this),
 			fileProgress: this.onFileUploadProgress.bind(this),
 			fileComplete: this.onFileUploadComplete.bind(this),
 			fileRemove: this.onFileQueueRemove.bind(this)
-		});
+		});*/
 	},
 
 	_attachModal: function(modal){
@@ -449,7 +449,7 @@ var FileManager = new Class({
 
 	onOpen: function(){
 		this.uploader.target = this.uploader.options.target;
-		this.uploader.reposition();
+		//this.uploader.reposition();
 		this.urlOverText.reposition();
 		this._repositionOverTexts.delay(300, this);
 	},
@@ -461,7 +461,7 @@ var FileManager = new Class({
 
 	onClose: function(){
 		this.uploader.target = null;
-		this.uploader.reposition();
+		//this.uploader.reposition();
 		this.urlOverText.reposition();
 	},
 
@@ -684,11 +684,11 @@ var FileList = new Class({
 			onFileQueued: this.onFileQueued.bind(this),
 			onFileError: this.onFileError.bind(this)
 		});
-		this.mgr.uploader.addEvents({
+		/*this.mgr.uploader.addEvents({
 			onStart: this.onUploadStart.bind(this),
 			onFileProgress: this.onUploadProgress.bind(this),
 			onComplete: this.onUploadComplete.bind(this)
-		});
+		});*/
 		this.setOptions(options);
 		this.ui.container = $(this.options.statusContainer);
 		this.ui.progress = this.ui.container.getElement(this.options.progress);
