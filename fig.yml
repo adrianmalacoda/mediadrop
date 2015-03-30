@@ -11,6 +11,7 @@ mediadrop:
         - ./deployment-scripts:/mediadrop/deployment-scripts
         - ./batch-scripts:/mediadrop/batch-scripts
     environment:
+        DEBUG: true
         DELAY: 30
         SQLALCHEMY_URL: "mysql://mediadrop:mediadrop@db/mediadrop?charset=utf8&use_unicode=0"
 
