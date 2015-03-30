@@ -1,0 +1,23 @@
+mediadrop:
+    build: .
+    links:
+        - db
+    ports:
+        - "8080:8080"
+    volumes:
+        - ./data:/mediadrop/data
+        - ./mediadrop:/mediadrop/mediadrop
+        - ./mediacore:/mediadrop/mediacore
+        - ./deployment-scripts:/mediadrop/deployment-scripts
+        - ./batch-scripts:/mediadrop/batch-scripts
+    environment:
+        DELAY: 30
+        SQLALCHEMY_URL: "mysql://mediadrop:mediadrop@db/mediadrop?charset=utf8&use_unicode=0"
+
+db:
+    image: mariadb
+    environment:
+        MYSQL_USER: mediadrop
+        MYSQL_PASSWORD: mediadrop
+        MYSQL_DATABASE: mediadrop
+        MYSQL_ROOT_PASSWORD: toor
