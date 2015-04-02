@@ -26,4 +26,13 @@ with open(CONFIG_FILE, "w") as config:
     config.writelines(config_entries)
 
 Popen(["paster", "setup-app", CONFIG_FILE]).wait()
-Popen(["paster", "serve", CONFIG_FILE]).wait()
+
+serve_command = ["paster", "serve"]
+
+if 'RELOAD' in os.environ:
+    serve_command.append("--reload")
+
+serve_command.append(CONFIG_FILE)
+
+print serve_command
+Popen(serve_command).wait()
