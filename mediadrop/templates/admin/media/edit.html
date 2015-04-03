@@ -73,14 +73,15 @@ See LICENSE.txt in the main project directory, for more information.
 				deleteButton.addEvent('click', deleteConfirm.openConfirmDialog.bind(deleteConfirm));
 
 			// Setup the flash uploader
-			var thumbUploader = {
+			var thumbUploader = new ThumbUploader({
 				image: 'thumb-img',
 				target: 'thumb',
 				statusContainer: 'thumb-upload',
 				uploadBtnText: '${_('Upload image').replace("'", "\\'")}',
 				fxProgressBar: {url: '${h.url_for('/admin/images/progressbar/progress.png')}'},
+				path: '${h.url_for('/scripts/third-party/Swiff.Uploader.swf')}',
 				verbose: false // debug
-			};
+			});
 
 			// Setup the file manager (which hooks into the uploader)
 			fileMgr = new FileManager('fmgr', {
@@ -92,6 +93,7 @@ See LICENSE.txt in the main project directory, for more information.
 					uploadBtn: {'class': 'btn grey f-rgt'},
 					uploadBtnText: '${_('Upload a file').replace("'", "\\'")}',
 					fxProgressBar: {url: '${h.url_for('/admin/images/progressbar/progress.png')}'},
+					path: '${h.url_for('/scripts/third-party/Swiff.Uploader.swf')}',
 					fileSizeMax: ${settings['max_upload_size']},
 					typeFilter: '*.*',
 					verbose: false // debug
