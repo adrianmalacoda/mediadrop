@@ -8,8 +8,8 @@
  **/
 
 var UploaderBase = new Class({
-
-	Extends: Swiff.Uploader,
+	
+	Implements: Events,
 
 	options: {
 		uploadBtn: {'class': 'btn grey'},
@@ -40,8 +40,8 @@ var UploaderBase = new Class({
 			this.target = this._createUploadBtn().replaces(this.target);
 		}
 		this.options.target = this.target;
-
-		this.parent();
+		
+		this.options.container = this.box = new Element('span', {'class': 'uploader-box'}).inject($(this.options.container) || document.body);
 
 		this.addEvents({
 			buttonEnter: this.onButtonEnter.bind(this),
@@ -52,6 +52,12 @@ var UploaderBase = new Class({
 		});
 	},
 
+	setOptions: function (options) {
+		for (var key in options) {
+			this.options[key] = options[key];
+		}
+	},
+	
 	onButtonEnter: function(){
 		if (this.target) this.target.addClass('hover');
 	},
